@@ -7,14 +7,14 @@ using Avalonia.Controls.Templates;
 
 namespace Avalonia.Controls
 {
-    internal class ItemTemplateWrapper : IElementFactory
+    public class ItemTemplateWrapper : IElementFactory
     {
-        private readonly IDataTemplate _dataTemplate;
+        public ItemTemplateWrapper(IDataTemplate dataTemplate) => Template = dataTemplate;
 
-        public ItemTemplateWrapper(IDataTemplate dataTemplate) => _dataTemplate = dataTemplate;
+        public IDataTemplate Template { get; }
 
         public IControl Build(object param) => GetElement(null, param);
-        public bool Match(object data) => _dataTemplate.Match(data);
+        public bool Match(object data) => Template.Match(data);
 
         public IControl GetElement(ElementFactoryGetArgs args)
         {
@@ -28,7 +28,7 @@ namespace Avalonia.Controls
 
         private IControl GetElement(IControl parent, object data)
         {
-            var selectedTemplate = _dataTemplate;
+            var selectedTemplate = Template;
             var recyclePool = RecyclePool.GetPoolInstance(selectedTemplate);
             IControl element = null;
 
@@ -52,7 +52,7 @@ namespace Avalonia.Controls
 
         private void RecycleElement(IControl parent, IControl element)
         {
-            var selectedTemplate = _dataTemplate;
+            var selectedTemplate = Template;
             var recyclePool = RecyclePool.GetPoolInstance(selectedTemplate);
             if (recyclePool == null)
             {
