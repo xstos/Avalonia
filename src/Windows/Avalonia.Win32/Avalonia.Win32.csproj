@@ -5,6 +5,9 @@
     <PackageId>Avalonia.Win32</PackageId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\Avalonia.Base\Metadata\NullableAttributes.cs" Link="NullableAttributes.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\packages\Avalonia\Avalonia.csproj" />
     <PackageReference Include="Avalonia.Angle.Windows.Natives" Version="2.1.0.2020091801" />
     <PackageReference Include="Microsoft.Windows.SDK.NET" Version="10.0.18362.3-preview" />
