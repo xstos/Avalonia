@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Platform;
 using Avalonia.ReactiveUI;
 
@@ -21,6 +22,7 @@ namespace ControlCatalog
             Application AppFactory()
             {
                 var app = new Application();
+                app.Styles.Add(App.DefaultDark);
                 app.RegisterServices();
                 var window = new Window();
                 var btn = new Button() { Content = "HI" };
