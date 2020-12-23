@@ -17,10 +17,28 @@ namespace ControlCatalog
         /// This method is needed for IDE previewer infrastructure
         /// </summary>
         public static AppBuilder BuildAvaloniaApp()
-            => AppBuilder.Configure<App>()
+        {
+            Application AppFactory()
+            {
+                var app = new Application();
+                app.RegisterServices();
+                var window = new Window();
+                var btn = new Button() { Content = "HI" };
+                btn.Click += (sender, eventArgs) =>
+                {
+                    window.Title = "hi";
+                };
+                window.Content = btn;
+                
+                window.Show();
+                app.Run(window);
+                return app;
+            }
+            return AppBuilder.Configure(AppFactory)
                 .LogToTrace()
                 .UsePlatformDetect()
                 .UseReactiveUI();
+        }
 
         private static void ConfigureAssetAssembly(AppBuilder builder)
         {
